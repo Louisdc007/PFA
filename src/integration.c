@@ -4,6 +4,12 @@
 #include <math.h>
 #include <stdlib.h>
 
+
+/*
+Ici on définit les trucs spécifiques à chaque méthodes de calculs
+L'objectif est que pour n'importe quel interval que l'on souhaite caculer, on se ramène à l'interval [0, 1]
+pour cela on utilise les formules du pdf et le découpage magique du saucisson
+*/
 bool setQuadFormula(QuadFormula* qf, char* name)
 {
     if (qf == NULL || name == NULL) return false;
@@ -59,6 +65,11 @@ bool setQuadFormula(QuadFormula* qf, char* name)
     return true;
 }
 
+
+/*
+La on calcul l'intégrale, grâce à la formule du saucisson on retrouve notre interval d'origine
+On calcule pour N morceaux
+*/
 double integrate(double (*f)(double), double a, double b, int N, QuadFormula *qf)
 {
     if (f == NULL || qf == NULL || N <= 0) return 0.0;
@@ -77,6 +88,9 @@ double integrate(double (*f)(double), double a, double b, int N, QuadFormula *qf
     return sum * h;
 }
 
+/*
+la différence avec l'autre c'est qu'on choisit la taille du morceau mais pas le nombre
+*/
 double integrate_dx(double (*f)(double), double a, double b, double dx, QuadFormula* qf)
 {
     if (f == NULL || qf == NULL || dx <= 0.0) return 0.0;

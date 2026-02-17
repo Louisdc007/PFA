@@ -19,7 +19,7 @@ bool init_integration(char* quadrature, double dt)
   return true;
 }
 
-
+// gare à toi si tu oublies bismillah
 
 /* Density of the normal distribution */
 double phi(double x)
