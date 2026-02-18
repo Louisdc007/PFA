@@ -22,7 +22,6 @@ bool init_integration(char* quadrature, double dt)
   return true;
 }
 
-// gare à toi si tu oublies bismillah
 
 /* Density of the normal distribution */
 double phi(double x)
@@ -33,7 +32,23 @@ double phi(double x)
 /* Cumulative distribution function of the normal distribution */
 double PHI(double x)
 {
-  return 0.0;
+	QuadFormula *p = malloc(sizeof(QuadFormula));
+	if (p == NULL) return false;
+
+	bool r = setQuadFormula(p, "trapezes");
+	if (r == false) {
+		free(p);
+		return false;
+	}
+
+	return ((1/2) * integrate_dx(&phi, 0, x, 0.1, p));
+
+}
+
+
+int main() {
+	double a = PHI(2);
+	printf("%d\n", a);
 }
 
 /* =====================================
