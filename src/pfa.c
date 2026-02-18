@@ -16,6 +16,9 @@
 */
 bool init_integration(char* quadrature, double dt)
 { 
+  if (dt < 0) return false;
+  if (strcmp(quadrature, "left") == 0 || strcmp(quadrature, "right") == 0 || strcmp(quadrature, "middle") == 0 || strcmp(quadrature, "trapezes") == 0 || strcmp(quadrature, "simpson") == 0 || strcmp(quadrature, "gauss2") == 0 || strcmp(quadrature, "gauss3") == 0)
+    return false;
   return true;
 }
 
