@@ -3,22 +3,16 @@
 #include <float.h> // Pour DBL_MAX
 #include "integration.h"
 
-// ==========================================
-// 1. Définition des fonctions à tester
-// ==========================================
 
 //double f_poly(double x) { return x * x; }
 double f_sin(double x)  { return sin(x); }
 //double f_exp(double x)  { return exp(x); }
 double f_atan(double x) { return 1.0 / (1.0 + x * x); }
 
-// ==========================================
-// 2. Fonction utilitaire de test avec comparateur
-// ==========================================
 
 void run_test(char* desc, double (*f)(double), double a, double b, double exact_val) {
     //char* methods[] = {"left", "right", "middle", "trapezes", "simpson", "gauss2", "gauss3"};
-    char* methods[] = {"left", "gauss3"};
+    char* methods[] = {"simpson", "gauss3"};
     int N_values[] = {1, 10, 20, 30, 40, 50, 60, 100, 1000};
 
     int nb_methods = 2;
@@ -72,9 +66,6 @@ void run_test(char* desc, double (*f)(double), double a, double b, double exact_
     }
 }
 
-// ==========================================
-// 3. Main
-// ==========================================
 
 int main() {
     double PI = acos(-1.0);
